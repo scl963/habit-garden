@@ -7,9 +7,10 @@ const ChartContainer = styled('div')`
   height: 300px;
   display: flex;
   justify-content: center;
-  width: 80%;
+  align-content: center;
+  width: 100%;
   @media (max-width: 750px) {
-    max-width: 100vw;
+    width: 100%;
   }
 `;
 
@@ -38,63 +39,68 @@ class OverviewChart extends Component {
 
   render() {
     const { tableData } = this.state;
-    return (
-      <ChartContainer>
-        <ResponsiveLine
-          data={tableData}
-          margin={{
-            top: 50,
-            right: 10,
-            bottom: 50,
-            left: 30,
-          }}
-          xScale={{
-            type: 'time',
-            format: '%Y-%m-%d',
-            precision: 'day',
-          }}
-          yScale={{
-            type: 'linear',
-            stacked: true,
-            min: '0',
-            max: 'auto',
-          }}
-          minY="auto"
-          maxY="auto"
-          stacked={true}
-          curve="monotoneX"
-          axisBottom={{
-            format: '%b %d',
-            orient: 'bottom',
-            tickSize: 5,
-            tickValues: 7,
-            tickPadding: 5,
-            tickRotation: 0,
-            legend: 'Date',
-            legendOffset: 36,
-            legendPosition: 'center',
-          }}
-          axisLeft={{
-            orient: 'left',
-            tickSize: 5,
-            tickPadding: 5,
-            tickRotation: 0,
-            legend: 'Amount',
-            legendOffset: -40,
-            legendPosition: 'center',
-          }}
-          dotSize={10}
-          dotColor="inherit:darker(0.3)"
-          dotBorderWidth={2}
-          dotBorderColor="#ffffff"
-          enableDotLabel={true}
-          dotLabel="y"
-          dotLabelYOffset={-12}
-          animate={true}
-          motionStiffness={90}
-          motionDamping={15}
-        />
-      </ChartContainer>
+    return tableData.length ? (
+      <div>
+        <h1>Progress this week</h1>
+        <ChartContainer>
+          <ResponsiveLine
+            data={tableData}
+            margin={{
+              top: 20,
+              right: 10,
+              bottom: 50,
+              left: 30,
+            }}
+            xScale={{
+              type: 'time',
+              format: '%Y-%m-%d',
+              precision: 'day',
+            }}
+            yScale={{
+              type: 'linear',
+              stacked: false,
+              min: '0',
+              max: 'auto',
+            }}
+            minY="auto"
+            maxY="auto"
+            stacked={true}
+            curve="monotoneX"
+            axisBottom={{
+              format: '%b %d',
+              orient: 'bottom',
+              tickSize: 5,
+              tickValues: 7,
+              tickPadding: 5,
+              tickRotation: 0,
+              legend: 'Date',
+              legendOffset: 36,
+              legendPosition: 'center',
+            }}
+            axisLeft={{
+              orient: 'left',
+              tickSize: 5,
+              tickPadding: 5,
+              tickRotation: 0,
+              legend: 'Amount',
+              legendOffset: -40,
+              legendPosition: 'center',
+            }}
+            dotSize={10}
+            dotColor="inherit:darker(0.3)"
+            dotBorderWidth={2}
+            dotBorderColor="#ffffff"
+            enableDotLabel={true}
+            dotLabel="y"
+            dotLabelYOffset={-12}
+            animate={true}
+            motionStiffness={90}
+            motionDamping={15}
+          />
+        </ChartContainer>
+      </div>
+    ) : (
+      <div />
     );
   }
 }

@@ -2,7 +2,7 @@ import styled from 'react-emotion';
 import React from 'react';
 
 const Container = styled('div')`
-  width: 700px;
+  width: 800px;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -11,6 +11,10 @@ const Container = styled('div')`
     margin: 0px;
     width: 95vw;
   }
+`;
+
+export const DarkBackground = styled('div')`
+  background-color: #595353;
 `;
 
 export const GenericContainer = props => <Container>{props.children}</Container>;

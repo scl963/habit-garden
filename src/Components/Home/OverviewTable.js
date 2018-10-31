@@ -6,15 +6,17 @@ import { Link } from 'react-router-dom';
 import { GenericContainer } from '../Styles';
 
 class OverviewTable extends Component {
-  state = {};
-
   render() {
     const { habits } = this.props;
     return (
       <GenericContainer>
-        <h1>My Habits</h1>
-        <Table textAlign="center" fixed selectable unstackable>
-          <Table.Header>
+        <Table textAlign="center" fixed selectable striped unstackable color={'blue'}>
+          <Table.Header fullWidth>
+            <Table.Row textAlign="center">
+              <Table.HeaderCell colSpan="2">
+                <h1 style={{ textAlign: 'center' }}>My Habits</h1>
+              </Table.HeaderCell>
+            </Table.Row>
             <Table.Row>
               <Table.HeaderCell>Name</Table.HeaderCell>
               <Table.HeaderCell>Last Activity</Table.HeaderCell>

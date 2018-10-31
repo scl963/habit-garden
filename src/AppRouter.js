@@ -14,15 +14,10 @@ const AppLayout = styled('div')`
   position: absolute;
   margin-right: 1em;
   margin-left: 1em;
-  top: calc(7em);
+  top: calc(5em);
   bottom: 0;
   left: 0;
   right: 0;
-`;
-
-const Content = styled('div')`
-  display: flex;
-  justify-content: center;
 `;
 
 class Routes extends Component {
