@@ -885,6 +885,11 @@
   resolved "https://registry.yarnpkg.com/@emotion/utils/-/utils-0.8.2.tgz#576ff7fb1230185b619a75d258cbc98f0867a8dc"
   integrity sha512-rLu3wcBWH4P5q1CGoSSH/i9hrXs7SlbRLkoq9IGuoPYNGQvDJ3pt/wmOM+XgYjIDRMVIdkUWt0RsfzF50JfnCw==
 
+"@mars/heroku-js-runtime-env@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@mars/heroku-js-runtime-env/-/heroku-js-runtime-env-3.0.2.tgz#e5b8480ed82b54046474a08a139b8d9560af3a28"
+  integrity sha1-5bhIDtgrVARkdKCKE5uNlWCvOig=
+
 "@nivo/axes@0.50.0":
   version "0.50.0"
   resolved "https://registry.yarnpkg.com/@nivo/axes/-/axes-0.50.0.tgz#335643fca4053c23ea0d4159053773e7a7d2073b"

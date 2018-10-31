@@ -6,8 +6,11 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { setContext } from 'apollo-link-context';
 import { createHttpLink } from 'apollo-link-http';
 import AppRouter from './AppRouter';
+import runtimeEnv from '@mars/heroku-js-runtime-env';
 
-const dblink = createHttpLink({ uri: process.env.REACT_APP_GRAPH_ENDPOINT });
+const env = runtimeEnv();
+
+const dblink = createHttpLink({ uri: env.REACT_APP_GRAPH_ENDPOINT });
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('auth_token');
