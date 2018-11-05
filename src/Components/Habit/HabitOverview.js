@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import { compareDesc } from 'date-fns';
-import { Button } from 'semantic-ui-react';
+import { Button, Loader } from 'semantic-ui-react';
 import { GenericContainer } from '../Styles';
 import HabitChart from './HabitChart';
 import NewInput from './NewInput';
@@ -37,7 +37,7 @@ const ButtonContainer = styled('div')`
   position: relative;
   top: 35px;
   right: -400px;
-  @media (max-width: 760px) {
+  @media (max-width: 770px) {
     top: 35px;
     right: -185px;
   }
@@ -46,16 +46,17 @@ const ButtonContainer = styled('div')`
 class HabitOverview extends Component {
   state = {
     createInput: false,
+    editDate: '',
   };
 
-  toggleCreateInput = () => {
+  toggleCreateInput = date => {
     const { createInput } = this.state;
-    this.setState({ createInput: !createInput });
+    this.setState({ createInput: !createInput, editDate: date });
   };
 
   closeCreateInput = () => {
     if (this.state.createInput === true) {
-      this.setState({ createInput: false });
+      this.setState({ createInput: false, editDate: '' });
     } else {
       return;
     }
@@ -67,15 +68,15 @@ class HabitOverview extends Component {
     return (
       <Query query={HABIT_QUERY} variables={{ habitId: habitId }}>
         {({ loading, error, data, refetch }) => {
-          if (loading) return <p>Loading...</p>;
+          if (loading) return <Loader active />;
           if (error) {
             console.log(error);
-            return <p>Error :(</p>;
+            return <p style={{ marginTop: '3em' }}>Error :( Try refreshing the page!</p>;
           }
 
           if (data) {
-            console.log(data);
             const { habit } = data;
+            const { editDate } = this.state;
             const sortedData = habit.inputs.sort((a, b) => compareDesc(a.date, b.date));
             return (
               <div onClick={this.closeCreateInput} style={{ marginBottom: '2em' }}>
@@ -95,6 +96,7 @@ class HabitOverview extends Component {
                       refetchInputs={refetch}
                       open={createInput}
                       close={this.closeCreateInput}
+                      editDate={editDate}
                     />
                   ) : (
                     ''
@@ -116,6 +118,7 @@ class HabitOverview extends Component {
                     data={sortedData}
                     goal={habit.goal}
                     direction={habit.direction}
+                    openEdit={this.toggleCreateInput}
                   />
                 </GenericContainer>
               </div>

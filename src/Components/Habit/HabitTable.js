@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Table, Icon } from 'semantic-ui-react';
-import { parse, format } from 'date-fns';
-import styled from 'react-emotion';
 import { Link } from 'react-router-dom';
-import { GenericContainer } from '../Styles';
 import { goalReached } from './utils';
+import { customFormat } from '../../utils/DateUtils';
+import NewInput from './NewInput';
 
 const HabitTable = props => {
   return (
@@ -26,8 +25,11 @@ const HabitTable = props => {
           props.data.map(input => {
             const isGoalReached = goalReached(input.amount, props.goal, props.direction);
             return (
-              <Table.Row>
-                <Table.Cell>{format(input.date, 'MMM DD YY')}</Table.Cell>
+              <Table.Row
+                key={input.date}
+                onClick={() => props.openEdit(customFormat(input.date, 'YYYY-MM-DD'))}
+              >
+                <Table.Cell>{customFormat(input.date, 'MMM DD YY')}</Table.Cell>
                 <Table.Cell>{input.amount}</Table.Cell>
                 <Table.Cell positive={isGoalReached} negative={!isGoalReached}>
                   {isGoalReached ? <Icon name="checkmark" /> : <Icon name="x" />}

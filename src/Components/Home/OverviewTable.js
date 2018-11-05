@@ -10,7 +10,7 @@ class OverviewTable extends Component {
     const { habits } = this.props;
     return (
       <GenericContainer>
-        <Table textAlign="center" fixed selectable striped unstackable color={'blue'}>
+        <Table textAlign="center" fixed selectable striped unstackable>
           <Table.Header fullWidth>
             <Table.Row textAlign="center">
               <Table.HeaderCell colSpan="2">
@@ -28,7 +28,6 @@ class OverviewTable extends Component {
               const parsedDate = parse(updatedAt).toDateString();
               return (
                 <Table.Row
-                  selectable
                   cellAs={Link}
                   key={name}
                   to={{ pathname: `/habit/${name}`, state: { habitId: id } }}

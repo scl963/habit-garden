@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ResponsiveLine } from '@nivo/line';
 import styled from 'react-emotion';
-import { getDateFromISO } from '../Home/utils';
+import { customFormat } from '../../utils/DateUtils';
 
 const ChartContainer = styled('div')`
   height: 300px;
@@ -18,7 +18,7 @@ class HabitChart extends Component {
   formatTableData(habit) {
     const { inputs, name } = habit;
     const data = inputs.map(({ date, amount }) => {
-      const newDate = getDateFromISO(date);
+      const newDate = customFormat(date, 'YYYY-MM-DD');
       return { x: newDate, y: amount };
     });
     return { id: name, data };
@@ -30,14 +30,21 @@ class HabitChart extends Component {
     this.setState({ tableData: [tableData] });
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      const { data } = this.props;
+      const tableData = this.formatTableData(data);
+      this.setState({ tableData: [tableData] });
+    }
+  }
+
   render() {
     const { tableData } = this.state;
-    console.log(tableData);
     return tableData.length && tableData[0].data.length ? (
       <ChartContainer>
         <ResponsiveLine
           data={tableData}
-          lineWidth={5}
+          lineWidth={15}
           colors="category10"
           margin={{
             top: 20,
@@ -49,12 +56,6 @@ class HabitChart extends Component {
             type: 'time',
             format: '%Y-%m-%d',
             precision: 'day',
-          }}
-          yScale={{
-            type: 'linear',
-            stacked: false,
-            min: '0',
-            max: 'auto',
           }}
           minY="auto"
           maxY="auto"
@@ -80,7 +81,7 @@ class HabitChart extends Component {
             legendOffset: -40,
             legendPosition: 'center',
           }}
-          dotSize={10}
+          dotSize={15}
           dotColor="inherit:darker(0.3)"
           dotBorderWidth={2}
           dotBorderColor="#ffffff"

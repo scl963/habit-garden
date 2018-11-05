@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
-import { Button } from 'semantic-ui-react';
+import { Button, Loader } from 'semantic-ui-react';
 import styled from 'react-emotion';
 import { getUserId } from '../../utils/AuthUtils';
 import OverviewTable from './OverviewTable';
@@ -11,8 +11,6 @@ import { format, subDays } from 'date-fns';
 import { GenericContainer } from '../Styles';
 
 const lastWeek = format(subDays(Date.now(), 7), 'YYYY-MM-DD');
-
-console.log(lastWeek);
 
 const GET_USER_DATA = gql`
   query User($userId: ID!, $start: DateTime!) {
@@ -35,12 +33,12 @@ const GET_USER_DATA = gql`
 
 const ButtonContainer = styled('div')`
   position: relative;
-  top: 28px;
+  top: 47px;
   right: -400px;
-  @media (max-width: 760px) {
+  @media (max-width: 770px) {
     width: 42px;
     height: 42px;
-    top: 19px;
+    top: 50px;
     right: -355px;
   }
 `;
@@ -50,10 +48,6 @@ class Home extends Component {
     userId: getUserId(),
     createHabit: false,
   };
-
-  componentDidMount() {
-    console.log('Hello');
-  }
 
   toggleCreateHabit = () => {
     const { createHabit } = this.state;
@@ -65,10 +59,10 @@ class Home extends Component {
     return (
       <Query query={GET_USER_DATA} variables={{ userId: userId, start: lastWeek }}>
         {({ loading, error, data, refetch }) => {
-          if (loading) return <p>Loading...</p>;
+          if (loading) return <Loader active />;
           if (error) {
             console.log(error);
-            return <p>Error :(</p>;
+            return <p style={{ marginTop: '3em' }}>Error :( Try refreshing the page</p>;
           }
 
           if (data) {

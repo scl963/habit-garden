@@ -45,9 +45,10 @@ class OverviewChart extends Component {
         <ChartContainer>
           <ResponsiveLine
             data={tableData}
+            lineWidth={8}
             margin={{
               top: 20,
-              right: 10,
+              right: 20,
               bottom: 50,
               left: 30,
             }}
@@ -55,12 +56,6 @@ class OverviewChart extends Component {
               type: 'time',
               format: '%Y-%m-%d',
               precision: 'day',
-            }}
-            yScale={{
-              type: 'linear',
-              stacked: false,
-              min: '0',
-              max: 'auto',
             }}
             minY="auto"
             maxY="auto"

@@ -5,6 +5,7 @@ import { Formik } from 'formik';
 import { Redirect, Link } from 'react-router-dom';
 import { Button, Form, Grid, Header, Segment } from 'semantic-ui-react';
 import { setAuthToken, isAuthenticated, setUserId, getUserId } from '../utils/AuthUtils';
+import { LoginFormContainer } from './Styles';
 
 const SIGNUP = gql`
   mutation Signup($email: String!, $password: String!, $firstName: String!) {
@@ -82,70 +83,51 @@ class Signup extends Component {
           >
             {({ values, errors, handleChange, handleBlur, handleSubmit, isSubmitting }) => {
               return (
-                <div className="signup-form">
-                  <style>
-                    {`
-                        body > div,
-                        body > div > div,
-                        body > div > div > div.signup-form {
-                          height: 100%;
-                        }
-                    `}
-                  </style>
-                  <Grid textAlign="center" style={{ height: '100%' }} verticalAlign="middle">
-                    <Grid.Column style={{ maxWidth: 450 }}>
-                      <Header as="h2" color="teal" textAlign="center">
-                        Sign up for an account
-                      </Header>
-                      <Form size="large" onSubmit={handleSubmit}>
-                        <Segment stacked>
-                          <Form.Input
-                            fluid
-                            icon="mail"
-                            iconPosition="left"
-                            placeholder="E-mail Address"
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            name="email"
-                            value={values.email}
-                          />
-                          <Form.Input
-                            type="firstName"
-                            name="firstName"
-                            icon="user"
-                            iconPosition="left"
-                            placeholder="First Name"
-                            fluid
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            value={values.firstName}
-                          />
-                          <Form.Input
-                            fluid
-                            icon="lock"
-                            iconPosition="left"
-                            placeholder="Password"
-                            type="password"
-                            name="password"
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            value={values.password}
-                          />
+                <LoginFormContainer>
+                  <Header as="h2" color="blue" textAlign="center">
+                    Sign up for an account
+                  </Header>
+                  <Form size="large" onSubmit={handleSubmit}>
+                    <Segment stacked>
+                      <Form.Input
+                        fluid
+                        icon="mail"
+                        iconPosition="left"
+                        placeholder="E-mail Address"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        name="email"
+                        value={values.email}
+                      />
+                      <Form.Input
+                        type="firstName"
+                        name="firstName"
+                        icon="user"
+                        iconPosition="left"
+                        placeholder="First Name"
+                        fluid
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.firstName}
+                      />
+                      <Form.Input
+                        fluid
+                        icon="lock"
+                        iconPosition="left"
+                        placeholder="Password"
+                        type="password"
+                        name="password"
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        value={values.password}
+                      />
 
-                          <Button
-                            type="submit"
-                            loading={isSubmitting}
-                            color="teal"
-                            fluid
-                            size="large"
-                          >
-                            Sign up
-                          </Button>
-                        </Segment>
-                      </Form>
-                    </Grid.Column>
-                  </Grid>
-                </div>
+                      <Button type="submit" loading={isSubmitting} color="blue" fluid size="large">
+                        Sign up
+                      </Button>
+                    </Segment>
+                  </Form>
+                </LoginFormContainer>
               );
             }}
           </Formik>

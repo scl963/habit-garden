@@ -7,8 +7,10 @@ const Container = styled('div')`
   flex-direction: column;
   margin: 0 auto;
   align-items: center;
-  @media (max-width: 760px) {
+  margin-top: 2em;
+  @media (max-width: 770px) {
     margin: 0px;
+    margin-top: 2em;
     width: 95vw;
   }
 `;
@@ -18,3 +20,15 @@ export const DarkBackground = styled('div')`
 `;
 
 export const GenericContainer = props => <Container>{props.children}</Container>;
+
+export const LoginFormContainer = styled('div')`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  width: 400px;
+  margin: 0 auto;
+  @media (max-width: 770px) {
+    width: 100%;
+  }
+`;
