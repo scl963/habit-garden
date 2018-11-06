@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ResponsiveLine } from '@nivo/line';
 import styled from 'react-emotion';
-import { getDateFromISO } from './utils';
+import { customFormat } from '../../utils/DateUtils';
 
 const ChartContainer = styled('div')`
   height: 300px;
@@ -23,7 +23,7 @@ class OverviewChart extends Component {
     const allInputs = data.map(habit => {
       const { inputs } = habit;
       const data = inputs.map(({ date, amount }) => {
-        const newDate = getDateFromISO(date);
+        const newDate = customFormat(date, 'YYYY-MM-DD');
         return { x: newDate, y: amount };
       });
       return { id: habit.name, data };

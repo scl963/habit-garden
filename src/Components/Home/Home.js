@@ -74,18 +74,10 @@ class Home extends Component {
                   {sortedHabits.length ? (
                     <div>
                       <OverviewChart data={sortedHabits} />
-                      <div>
-                        <ButtonContainer>
-                          <Button
-                            positive
-                            circular
-                            size="large"
-                            icon="plus"
-                            onClick={this.toggleCreateHabit}
-                          />
-                        </ButtonContainer>
-                      </div>
-                      <OverviewTable habits={sortedHabits} />
+                      <OverviewTable
+                        habits={sortedHabits}
+                        toggleCreateHabit={this.toggleCreateHabit}
+                      />
                     </div>
                   ) : (
                     <div>

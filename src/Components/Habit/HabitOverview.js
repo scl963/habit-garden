@@ -101,17 +101,6 @@ class HabitOverview extends Component {
                   ) : (
                     ''
                   )}
-                  <div>
-                    <ButtonContainer>
-                      <Button
-                        positive
-                        circular
-                        size="large"
-                        icon="plus"
-                        onClick={this.toggleCreateInput}
-                      />
-                    </ButtonContainer>
-                  </div>
                   <HabitTable
                     name={habit.name}
                     unit={habit.unit}

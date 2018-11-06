@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Icon } from 'semantic-ui-react';
+import { Table, Icon, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { goalReached } from './utils';
 import { customFormat } from '../../utils/DateUtils';
@@ -11,7 +11,17 @@ const HabitTable = props => {
       <Table.Header fullWidth>
         <Table.Row textAlign="center">
           <Table.HeaderCell colSpan="3">
-            <h1 style={{ textAlign: 'center' }}>{props.name} Activity Log</h1>
+            <h1 style={{ textAlign: 'center' }}>
+              {props.name} Activity Log{' '}
+              <Button
+                positive
+                circular
+                style={{ verticalAlign: 'text-top', float: 'right' }}
+                size="small"
+                icon="plus"
+                onClick={props.openEdit}
+              />
+            </h1>
           </Table.HeaderCell>
         </Table.Row>
         <Table.Row>
