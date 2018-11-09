@@ -1,9 +1,7 @@
 import React from 'react';
 import { Table, Icon, Button } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
 import { goalReached } from './utils';
 import { customFormat } from '../../utils/DateUtils';
-import NewInput from './NewInput';
 
 const HabitTable = props => {
   return (
@@ -11,15 +9,15 @@ const HabitTable = props => {
       <Table.Header fullWidth>
         <Table.Row textAlign="center">
           <Table.HeaderCell colSpan="3">
-            <h1 style={{ textAlign: 'center' }}>
-              {props.name} Activity Log{' '}
+            <h1 style={{ textAlign: 'center', paddingLeft: '33px' }}>
+              {props.name} Activity Log
               <Button
                 positive
-                circular
                 style={{ verticalAlign: 'text-top', float: 'right' }}
+                circular
                 size="small"
                 icon="plus"
-                onClick={props.openEdit}
+                onClick={props.createInput}
               />
             </h1>
           </Table.HeaderCell>
@@ -37,6 +35,7 @@ const HabitTable = props => {
             return (
               <Table.Row
                 key={input.date}
+                style={{ cursor: 'pointer' }}
                 onClick={() => props.openEdit(customFormat(input.date, 'YYYY-MM-DD'))}
               >
                 <Table.Cell>{customFormat(input.date, 'MMM DD YY')}</Table.Cell>

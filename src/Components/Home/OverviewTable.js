@@ -13,7 +13,7 @@ const OverviewTable = props => {
         <Table.Header fullWidth>
           <Table.Row textAlign="center">
             <Table.HeaderCell colSpan="2">
-              <h1 style={{ textAlign: 'center' }}>
+              <h1 style={{ textAlign: 'center', paddingLeft: '33px' }}>
                 My Habits{' '}
                 <Button
                   positive

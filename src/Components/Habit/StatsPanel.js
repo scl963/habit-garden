@@ -22,7 +22,7 @@ const StatsContainer = styled('div')`
 `;
 
 const StatsPanel = props => {
-  return (
+  return props && props.best ? (
     <StatsContainer>
       <Statistic inverted>
         <Statistic.Value>{format(props.best.date, 'MM/DD')}</Statistic.Value>
@@ -43,6 +43,8 @@ const StatsPanel = props => {
         <Statistic.Label>Daily Average</Statistic.Label>
       </Statistic>
     </StatsContainer>
+  ) : (
+    ''
   );
 };
 

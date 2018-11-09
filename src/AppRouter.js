@@ -26,8 +26,16 @@ const AppLayout = styled('div')`
   left: 0;
   right: 0;
   @media (max-width: 770px) {
-    margin-right: 1em;
-    margin-left: 1em;
+    margin-right: 0.6em;
+    margin-left: 0.7em;
+  }
+`;
+
+const HeaderText = styled('p')`
+  font-size: 1.5em;
+  font-weight: bold;
+  @media (max-width: 770px) {
+    font-size: 1.2em;
   }
 `;
 
@@ -60,35 +68,35 @@ class Routes extends Component {
           )}
           {auth ? (
             <Menu.Item as={Link} to="/home">
-              <h3>
+              <HeaderText>
                 <Icon name="chart bar" color="orange" />
                 Dashboard
-              </h3>
+              </HeaderText>
             </Menu.Item>
           ) : (
             ''
           )}
           {auth ? (
             <Menu.Item as={Link} to="/garden">
-              <h3>
+              <HeaderText>
                 <Icon name="tree" color="green" />
                 My Garden
-              </h3>
+              </HeaderText>
             </Menu.Item>
           ) : (
             <div />
           )}
           {auth ? (
             <Menu.Item position="right" onClick={this.logOutAndRerender}>
-              <h3>Log out</h3>
+              <HeaderText>Log out</HeaderText>
             </Menu.Item>
           ) : (
             <Menu.Item position="right">
               <Menu.Item as={Link} to={'/login'}>
-                <h3>Log in</h3>
+                <HeaderText>Log in</HeaderText>
               </Menu.Item>
               <Menu.Item as={Link} to={'/signup'}>
-                <h3>Sign Up</h3>
+                <HeaderText>Sign Up</HeaderText>
               </Menu.Item>
             </Menu.Item>
           )}

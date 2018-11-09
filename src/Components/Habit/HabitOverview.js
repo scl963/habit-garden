@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 import { compareDesc } from 'date-fns';
-import { Button, Loader } from 'semantic-ui-react';
+import { Button, Loader, Icon, Dropdown, Grid } from 'semantic-ui-react';
 import { GenericContainer } from '../Styles';
 import HabitChart from './HabitChart';
 import NewInput from './NewInput';
@@ -33,14 +33,8 @@ const HABIT_QUERY = gql`
   }
 `;
 
-const ButtonContainer = styled('div')`
-  position: relative;
-  top: 35px;
-  right: -400px;
-  @media (max-width: 770px) {
-    top: 35px;
-    right: -185px;
-  }
+const DropdownContainer = styled('div')`
+  float: right !important;
 `;
 
 class HabitOverview extends Component {
@@ -81,7 +75,19 @@ class HabitOverview extends Component {
             return (
               <div onClick={this.closeCreateInput} style={{ marginBottom: '2em' }}>
                 <GenericContainer>
-                  <h1>{habit.name}</h1>
+                  <h1 style={{ textAlign: 'center', width: '90%', paddingLeft: '33px' }}>
+                    {habit.name}{' '}
+                    <DropdownContainer>
+                      <Dropdown direction="left" floating icon="settings">
+                        <Dropdown.Menu>
+                          <Dropdown.Item>
+                            <Icon name="delete" />
+                            Delete Habit
+                          </Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    </DropdownContainer>
+                  </h1>
                   <HabitChart data={habit} />
                   <StatsPanel
                     best={habit.best}
@@ -108,6 +114,7 @@ class HabitOverview extends Component {
                     goal={habit.goal}
                     direction={habit.direction}
                     openEdit={this.toggleCreateInput}
+                    createInput={this.toggleCreateInput}
                   />
                 </GenericContainer>
               </div>
