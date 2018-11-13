@@ -12,7 +12,7 @@ const GardenContainer = styled('div')`
 `;
 
 const Garden = props => {
-  return <GardenContainer>Hello</GardenContainer>;
+  return <GardenContainer>Under Construction</GardenContainer>;
 };
 
 export default Garden;

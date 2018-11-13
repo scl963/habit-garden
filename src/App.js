@@ -7,6 +7,7 @@ import { setContext } from 'apollo-link-context';
 import { createHttpLink } from 'apollo-link-http';
 import AppRouter from './AppRouter';
 import runtimeEnv from '@mars/heroku-js-runtime-env';
+import HttpsRedirect from 'react-https-redirect';
 
 const env = runtimeEnv();
 
@@ -30,9 +31,11 @@ const client = new ApolloClient({
 class App extends Component {
   render() {
     return (
-      <ApolloProvider client={client}>
-        <AppRouter />
-      </ApolloProvider>
+      <HttpsRedirect>
+        <ApolloProvider client={client}>
+          <AppRouter />
+        </ApolloProvider>
+      </HttpsRedirect>
     );
   }
 }
